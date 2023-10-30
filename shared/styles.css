@@ -6,6 +6,9 @@
 #hauraki    { top:  60px; left: 400px; height: 330px; width: 560px; } 
 #console    { top: 430px; left:  10px; height: 330px; width: 560px; } 
 
+/* style the whole site to be responsive */
+
+
 /* style the background of the main screen */
 body{        
   font-family:VT323,Courier;
@@ -40,6 +43,11 @@ iframe {
   right:2px;
 }
 
+.left{
+  position:absolute;
+  left:2px;
+}
+
 
 .window {
   position: fixed;
@@ -51,16 +59,13 @@ iframe {
   padding: 2px;   
 }
 .window > .handle {
+  
   margin: -2px -2px 2 -2px;
-  padding:4px;
+  padding: 4px;
+  text-align:center;
   background-color: green;
   color: black;
   cursor: move;
-}
-.handle::after {  
-  content:'';    
-  position:absolute;
-  right:2px;
 }
 
 .window > .content {
