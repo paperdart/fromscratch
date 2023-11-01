@@ -1,13 +1,10 @@
 /* initial location and size of each window */
 #cctv       { top: 100px; left: 100px; height: 200px; width: 300px; }
-#oldtv      { top:  10px; left: 150px; height: 400px; width: 600px; }
+#oldtv      { top:  60px; left: 150px; height: 400px; width: 600px; }
 #earthnull  { top: 400px; left: 500px; height: 430px; width: 600px; }
-#deathclock { top:   0px; left: 600px; height: 100px; width: 200px; }
-#hauraki    { top:  60px; left: 400px; height: 330px; width: 560px; } 
-#console    { top: 430px; left:  10px; height: 330px; width: 560px; } 
-
-/* style the whole site to be responsive */
-
+#deathclock { top:  50px; left: 10px; height: 100px; width: 200px; }
+#hauraki    { top:  60px; left: 400px; height: 345px; width: 560px; } 
+#console    { top: 430px; left:  10px; height: 340px; width: 560px; } 
 
 /* style the background of the main screen */
 body{        
@@ -17,17 +14,57 @@ body{
   user-select: none;
   font-size: 22px;
 }
-canvas {display:block;}
+
+canvas {
+  display:block;
+  z-index:0;
+  overflow: hidden;
+}
+
 iframe {
   padding:-2px;
   border: none;
 }
 
-.desktop {
-  background-image: url('anonymous-static.gif');  
-  background-repeat: no-repeat;
-  background-size: contain;  
-  background-position: top;  
+/* Add a black background color to the top navigation */
+.topnav {
+  float: left;
+  display: block;
+  z-index:1;
+  position:fixed;
+  margin:0;
+  border:0;
+  padding:0;
+  top:0;
+  left:0;  
+  width:100%;
+  background-color: green;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav button {
+  background-color: green;
+  float: left;
+  font-family:VT323;
+  color: black;
+  border-width: 2px;
+  border-style: solid;
+  border-color: green;
+  padding: 10px;
+  font-size: 24px;  
+}
+
+/* Change the color of links on hover */
+.topnav button:hover {
+  background-color: black;
+  color: green;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: black;
 }
 
 /* style the movable windows */
@@ -47,29 +84,43 @@ iframe {
   position:absolute;
   left:2px;
 }
-
+.center {
+  text-align: center;
+}
 
 .window {
+  z-index: 1;
   position: fixed;
   margin: 0;
   border-style: solid;
   border-radius: 6px;
-  border-color: green;
-  background-color: black;
-  padding: 2px;   
+  border-color:  rgba(0,128,0,0.9);
+  padding: 2px;
+  background-color: rgba(0,0,0,0.5);
 }
 .window > .handle {
   
   margin: -2px -2px 2 -2px;
   padding: 4px;
   text-align:center;
-  background-color: green;
+  background-color: rgba(0,128,0,0.9);
   color: black;
   cursor: move;
 }
 
 .window > .content {
+  width: 100%;
+  height:auto;
   white-space:pre-line;
   user-select: none;
-  pointer-events: none;
+  pointer-events: none;  
 }
+
+ .connecting {
+  background-image: url('connecting.gif');  
+  background-size: 210px 160px;
+ }
+
+ .hide {
+  display:none;
+ }

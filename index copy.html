@@ -1,0 +1,50 @@
+<html>
+  <head>    
+    <title>NETRUNNER</title>    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/interactiveJS/interactiveJS@v2.0.1/src/css/minMaxClose.min.css"/>       
+    <script src="https://cdn.jsdelivr.net/gh/interactiveJS/interactiveJS@v2.0.1/src/individuals/minMaxClose.min.js"></script>
+
+    <link rel="stylesheet" href="shared/styles.css">
+    <script src="shared/matrixrain.js" defer></script>    
+
+  </head>
+  <body>  
+    <!-- make it rain... -->    
+    <canvas id="rain"> </canvas>    
+
+    <!-- define each of the movable windows -->
+    <div id="oldtv" class="window" >
+      <div class="handle">OLD TV</div>
+      <div class="content">This is some text</div> 
+    </div>
+    <div id="cctv" class="window" >
+      <div class="handle">CCTV</div>
+      <div class="content">This is some text</div>
+    </div>    
+    <div id="earthnull" class="window" >
+      <div class="handle">EARTH NULL</div>
+      <div class="content"><iframe width="600px" height="400px" src="https://earth.nullschool.net/#current/wind/surface/level/orthographic=-184.90,-35.60,4550"></iframe></div>
+    </div>  
+    <div id="deathclock" class="window" >
+      <div class="handle">DEATHCLOCK</div>
+      <div class="content">00:00:00:00.001</iframe></div>
+    </div>        
+    <div id="console" class="window">
+      <div class="handle"><span class="material-symbols-outlined left">keyboard</span>CONSOLE<span class="material-symbols-outlined right">cancel</span></div>
+      <div class="content"> Wake up, Neo...
+                            The Matrix has you...
+                            Follow the white rabbit.
+                            Knock, knock, Neo.
+      </div>
+
+      <div id="hauraki" class="window">
+        <div class="handle" pointer-events="auto">HAURAKI</div>
+        <div class="content">
+          <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/pUnKgU3r1cI?si=yvWJYIazoTrcOw_A?controls=0&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
+        </div>
+      </div>        
+    </div> 
+  </body>  
+</html>
