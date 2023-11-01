@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="shared/styles.css">
     <script src="shared/matrixrain.js" defer></script>
     <script src="shared/window.js" defer></script>
-
+    <script src="shared/typing.js" defer></script>
+    <script src="shared/geolocation.js" defer></script>
   </head>
   <body>  
     <!-- define the toolbar-->
@@ -18,16 +19,23 @@
       <button class="tap-target" targetid="deathclock">DEATHCLOCK</button>
       <button class="tap-target" targetid="earthnull">EARTH NULL</button>
       <button class="tap-target" targetid="cctv">CCTV</button>
-      <button class="tap-target" targetid="oldtv">OLD TV</button>
+      <button class="tap-target" targetid="finder">FINDER</button>
     </div>
 
     <!-- make it rain... -->    
     <canvas id="rain"> </canvas>
 
     <!-- define each of the movable windows -->
-    <div id="oldtv" class="draggable window hide" >
-      <p class="tap-target handle">OLD TV</p>
-      <p class="content">This is some text</p> 
+    <div id="finder" class="draggable window hide" >
+      <div class="tap-target handle">FINDER</div>
+      <div class="content">
+        latitude:  <span id="lat1"></span>
+        longitude: <span id="lng1"></span>
+        latitude:  <span id="lat2"></span>
+        longitude: <span id="lng2"></span>
+        distance:  <span id="distance"></span> km
+        bearing:   <span id="bearing"></span> degrees
+      </div> 
     </div>
     <div id="cctv" class="draggable window hide" >
       <div class="handle">CCTV</div>
@@ -35,22 +43,19 @@
     </div>    
     <div id="earthnull" class="draggable window hide" >
       <div class="handle">EARTH NULL</div>
-      <div class="content"><iframe width="56vw" height="37vw" src="https://earth.nullschool.net/#current/wind/surface/level/orthographic=-184.90,-35.60,4550"></iframe></div>
+      <div class="content"><!--iframe width="800px" height="600px" src="https://earth.nullschool.net/#current/wind/surface/level/orthographic=-184.90,-35.60,4550"></iframe--></div>
     </div>  
-    <div id="deathclock" class="draggable window" >
+    <div id="deathclock" class="draggable window hide" >
       <div class="handle">DEATHCLOCK</div>
-      <div class="content"><p id="timeuntil">00:00:00:00.001</p></div>
+      <div class="content"><p id="timeuntil" class="clock">00:00:00:00.001</p></div>
+      <!-- window.setInterval(typewriter, 120,'neo','Wake up, Neo...\nThe Matrix has you...\nFollow the white rabbit.      \n\n\n\n\nKnock, knock, Neo.');-->
     </div>        
     <div id="console" class="draggable window hide">
       <div class="handle">CONSOLE</div>
-      <div class="content"> Wake up, Neo...
-                            The Matrix has you...
-                            Follow the white rabbit.
-                            Knock, knock, Neo.
-      </div>
+      <div id="neo" texttotype="." class="content typing" ></div>
     </div>
 
-      <div id="hauraki" class="draggable window">
+      <div id="hauraki" class="draggable window hide">
         <div class="handle" pointer-events="auto">HAURAKI</div> 
         <div class="content connecting"></div>
       </div>        

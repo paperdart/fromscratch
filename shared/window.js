@@ -11,12 +11,14 @@ interact('.draggable')
 interact('.tap-target').on('tap', function (event) { toggleHide (event); })
 
 function toggleHide (event) {
-    //console.log(event.target.attributes.targetid.nodeValue);
-    var target = document.getElementById(event.target.attributes.targetid.nodeValue);
-    //console.log(target);
-    target.classList.toggle('hide');   
+    var targetid = event.target.attributes.targetid.nodeValue;    
+    var target = document.getElementById(targetid);    
+    target.classList.toggle('hide');
+    if (targetid == 'finder') {whereAmI();}
 }
 
+
+// DRAG MOVE A WINDOW
 function dragMoveListener (event) {
   var target = event.target
   // keep the dragged position in the data-x/data-y attributes
@@ -30,24 +32,38 @@ function dragMoveListener (event) {
   target.setAttribute('data-x', x)
   target.setAttribute('data-y', y)
 }
-
-function updateCountdown(updatecontrol,enddatetime){
-    //console.log('updateCountdown start');
-    //console.log(updatecontrol);
-    //console.log(enddatetime);
-
-    var remaining = new Date(enddatetime).getTime() - new Date().getTime();
-    //console.log(remaining);
-
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(remaining / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-    var milliseconds = Math.floor((remaining % (1000)));
-
-    document.getElementById(updatecontrol).innerHTML = days + "d " + hours + ":" + minutes + ":" + seconds + "." + milliseconds;
-}
-window.setInterval(updateCountdown, 10,'timeuntil', '2023-11-01T04:00:00');
-
 window.dragMoveListener = dragMoveListener;
+
+// UPDATE DEATHCLOCK
+function updateCountdown(elementid,enddatetime){
+  // calculate the remaining time
+  var remaining = new Date(enddatetime).getTime() - new Date().getTime();
+      
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2,'0');
+  var minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2,'0');
+  var seconds = Math.floor((remaining % (1000 * 60)) / 1000).toString().padStart(2,'0');
+  var milliseconds = Math.floor((remaining % (1000))).toString().padStart(3,'0');
+
+  document.getElementById(elementid).innerHTML = days + "d " + hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+}
+window.setInterval(updateCountdown, 59,'timeuntil', '2024-03-03T10:30:00');
+
+function typewriter(elementid, texttotype){
+  //console.log('typewriter start: '+elementid);    
+  var length = document.getElementById(elementid).innerHTML.length;
+  if (length < texttotype.length) {
+      //console.log(texttotype.substring(0,length+1));
+      document.getElementById(elementid).innerHTML = texttotype.substring(0,length+1);
+      //console.log(texttotype.substring(length,length+1));
+      if (texttotype.substring(length,length+1) != ' ') {
+          let keypress = new Audio('./shared/keypress.mp3');  
+          keypress.play();
+      }
+  } else {
+      clearInterval(typewriter)
+  }
+}
+
+//window.setInterval(typewriter, 200,'neo','Wake up, Neo...\nThe Matrix has you...\nFollow the white rabbit.      \n\n\n\n\nKnock, knock, Neo.');
