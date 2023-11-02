@@ -14,7 +14,27 @@ function toggleHide (event) {
     var targetid = event.target.attributes.targetid.nodeValue;    
     var target = document.getElementById(targetid);    
     target.classList.toggle('hide');
-    if (targetid == 'finder') {whereAmI();}
+    switch(targetid) {
+    case 'finder':
+      console.log('run whereami');
+      whereAmI();
+      break;
+    case 'console':
+      console.log('set interval typewriter');
+      window.setInterval(typewriter, 200,'neo','Wake up, Neo...\nThe Matrix has you...\nFollow the white rabbit.      \n\n\n\n\nKnock, knock, Neo.');
+      break;
+    case 'hauraki':
+      console.log('load youtube video');
+      document.getElementById('hauraki-video').innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/pUnKgU3r1cI?si=umvT7MtlXlI5gjG_&amp;controls=0?autoplay=1" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture; web-share"></iframe>';
+      break;
+    case 'earthnull':
+      console.log('load earthnull');
+      document.getElementById('earthnull-video').innerHTML = '<iframe height=100% width=100% src="https://earth.nullschool.net/#current/wind/surface/level/orthographic=-184.90,-35.60,4550"></iframe>';
+      break;
+    default:
+
+    }
+       
 }
 
 
